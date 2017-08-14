@@ -3,13 +3,13 @@
     <div class="col-md-6">
       <h3>Results</h3>
       <template ngFor let-property [ngForOf]="results">
-        <app-property-card [propertyDetail]="property"></app-property-card>
+        <app-property-card [propertyDetail]="property" hoverButtonText="Add"></app-property-card>
       </template>
     </div>
     <div class="col-md-6">
       <h3>Saved Properties</h3>
       <template ngFor let-property [ngForOf]="savedProperty">
-        <app-property-card [propertyDetail]="property"></app-property-card>
+        <app-property-card [propertyDetail]="property" hoverButtonText="Remove"></app-property-card>
       </template>
     </div>
   </div>

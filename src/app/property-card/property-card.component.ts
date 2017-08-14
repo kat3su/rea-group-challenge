@@ -9,4 +9,6 @@ import {Property} from '../@models/property';
 export class PropertyCardComponent {
   @Input()
   propertyDetail: Property;
+  @Input()
+  hoverButtonText: string;
 }
