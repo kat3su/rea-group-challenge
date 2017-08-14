@@ -1,0 +1,14 @@
+<div class="property-card">
+  <div class="property-card__logo" [style.background]="propertyDetail.agency.brandingColors.primary">
+    <img [src]="propertyDetail.agency.logo" />
+  </div>
+  <div class="property-card__image">
+    <img [src]="propertyDetail.mainImage" />
+  </div>
+  <div class="property-card__price">
+    {{propertyDetail.price}}
+  </div>
+  <div class="property-card__hover-button" *ngIf="hoverButtonText">
+    <button class="btn btn-info" (click)="onButtonClick()">{{hoverButtonText}}</button>
+  </div>
+</div>

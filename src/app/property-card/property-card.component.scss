@@ -1,0 +1,45 @@
+/**
+ * Property Card Styles
+ */
+.property-card {
+  border: 1px solid #ccc;
+  max-width: 600px;
+  margin-bottom: 1rem;
+  position: relative;
+
+  /* Property Logo */
+  &__logo {
+    height: 30px;
+  }
+
+  /* Property Image */
+  &__image {
+    img {
+      width: 100%;
+    }
+  }
+
+  /* Property Price */
+  &__price {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+
+  /* Hover Overlay Panel */
+  &__hover-button {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 10%;
+    text-align: center;
+    display: none;
+
+    button {
+      min-width: 80%;
+      font-size: 1.5rem;
+    }
+  }
+  &:hover &__hover-button {
+    display: block;
+  }
+}
