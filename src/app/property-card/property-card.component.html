@@ -9,6 +9,6 @@
     {{propertyDetail.price}}
   </div>
   <div class="property-card__hover-button" *ngIf="hoverButtonText">
-    <button class="btn btn-info">{{hoverButtonText}}</button>
+    <button class="btn btn-info" (click)="onButtonClick()">{{hoverButtonText}}</button>
   </div>
 </div>

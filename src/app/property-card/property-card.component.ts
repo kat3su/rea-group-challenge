@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Property} from '../@models/property';
 
 @Component({
@@ -11,4 +11,13 @@ export class PropertyCardComponent {
   propertyDetail: Property;
   @Input()
   hoverButtonText: string;
+  @Output()
+  buttonClick: EventEmitter<Property> = new EventEmitter();
+
+  /**
+   * Hover Button Callback
+   */
+  onButtonClick() {
+    this.buttonClick.emit(this.propertyDetail);
+  }
 }

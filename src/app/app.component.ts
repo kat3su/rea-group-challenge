@@ -38,4 +38,20 @@ export class AppComponent implements OnInit {
       }
     );
   }
+
+  /**
+   * Add a property to saved property and also removed from result
+   * @param {Property} property
+   */
+  addToSaved(property: Property) {
+      console.log(`${property.id} added to saved.`);
+  }
+
+  /**
+   * Remove a property from saved property and add to results
+   * @param {Property} property
+   */
+  removeFromSaved(property: Property) {
+    console.log(`${property.id} removed from saved.`);
+  }
 }
