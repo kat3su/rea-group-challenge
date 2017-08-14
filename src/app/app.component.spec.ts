@@ -1,32 +1,56 @@
-import { TestBed, async } from '@angular/core/testing';
+import {TestBed, async, ComponentFixture} from '@angular/core/testing';
 
 import { AppComponent } from './app.component';
+import {PropertyCardComponent} from './property-card/property-card.component';
+import {HttpModule} from '@angular/http';
+import {Property} from './@models/property';
 
 describe('AppComponent', () => {
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent,
+        PropertyCardComponent
       ],
+      imports: [
+        HttpModule
+      ]
     }).compileComponents();
+  }));
+  beforeEach(async(() => {
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
+    fixture.autoDetectChanges();
+    fixture.detectChanges();
   }));
 
   it('should create the app', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   }));
 
-  it(`should have as title 'app works!'`, async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('app works!');
+  it(`should add property to saved list on when clicking on add button`, async(() => {
+    // First property in result list
+    const propertyObject = component.results[0];
+    // Add Button for the first property above
+    const btn = fixture.debugElement.nativeElement.querySelector('.result-list .property-card button');
+    // Mock up click event
+    btn.click();
+    // This property should be added to saved property list
+    expect(component.savedProperty.indexOf(propertyObject) !== -1).toBeTruthy();
   }));
 
-  it('should render title in a h1 tag', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('app works!');
+  it('should remove property from saved property list when clicking on remove button', async(() => {
+    // First property in result list
+    const propertyObject = component.savedProperty[0];
+    // Add Button for the first property above
+    const btn = fixture.debugElement.nativeElement.querySelector('.saved-list .property-card button');
+    // Mock up click event
+    btn.click();
+    // This property should be added to saved property list
+    expect(component.savedProperty.indexOf(propertyObject) === -1).toBeTruthy();
   }));
+
 });
