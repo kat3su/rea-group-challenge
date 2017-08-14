@@ -25,13 +25,13 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     // Get property data from json file and add to results & saved properties
     this.http.get(this.propertiesDataUrl).toPromise().then(response => {
-        response = response.json();
-        response['results'].map(propertyData => {
-            this.results.push(new Property(propertyData));
-        });
-        response['saved'].map(propertyData => {
-            this.savedProperty.push(new Property(propertyData));
-        });
+      response = response.json();
+      response['results'].map(propertyData => {
+        this.results.push(new Property(propertyData));
+      });
+      response['saved'].map(propertyData => {
+        this.savedProperty.push(new Property(propertyData));
+      });
     }).catch(
       error => {
         console.log(error);
@@ -40,18 +40,27 @@ export class AppComponent implements OnInit {
   }
 
   /**
-   * Add a property to saved property and also removed from result
+   * Add a property to saved property
    * @param {Property} property
    */
   addToSaved(property: Property) {
-      console.log(`${property.id} added to saved.`);
+    // If this property isn't in the saved property list
+    if (this.savedProperty.indexOf(property) === -1) {
+      // add this property to saved
+      this.savedProperty.push(property);
+    }
   }
 
   /**
-   * Remove a property from saved property and add to results
+   * Remove a property from saved property
    * @param {Property} property
    */
   removeFromSaved(property: Property) {
-    console.log(`${property.id} removed from saved.`);
+    const savedPropertyIndex = this.savedProperty.indexOf(property);
+    // If this property is in saved property list
+    if (savedPropertyIndex !== -1) {
+      // Remove the property from saved
+      this.savedProperty.splice(savedPropertyIndex, 1);
+    }
   }
 }
